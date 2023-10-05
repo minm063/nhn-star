@@ -1,15 +1,13 @@
-package org.nhnacademy.protos;
+package org.nhnacademy.units.protos;
 
-import org.nhnacademy.Protos;
+import org.nhnacademy.species.Protos;
 import org.nhnacademy.attackType.Flyable;
 
 public class Corsair extends Protos implements Flyable {
-    private static final int ATTACK_POWER = 4;
-    private static final int DEFENSE_POWER = 12;
     private static final String UNIT_NAME = "Corsair";
 
     public Corsair() {
-        super(ATTACK_POWER, DEFENSE_POWER);
+        super(4, 12);
     }
 
     @Override

@@ -1,4 +1,6 @@
-package org.nhnacademy;
+package org.nhnacademy.species;
+
+import org.nhnacademy.Unit;
 
 public abstract class Terran implements Unit {
     private int attackPower;

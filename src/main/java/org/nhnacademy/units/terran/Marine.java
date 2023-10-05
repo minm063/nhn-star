@@ -1,13 +1,11 @@
-package org.nhnacademy.terran;
+package org.nhnacademy.units.terran;
 
-import org.nhnacademy.Terran;
+import org.nhnacademy.species.Terran;
 
 public class Marine extends Terran {
     private static final String UNIT_NAME = "Marine";
-    private static final int ATTACK_POWER = 3;
-    private static final int DEFENSE_POWER = 10;
     public Marine() {
-        super(ATTACK_POWER, DEFENSE_POWER);
+        super(3, 10);
     }
 
     @Override

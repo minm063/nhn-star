@@ -1,15 +1,13 @@
-package org.nhnacademy.terran;
+package org.nhnacademy.units.terran;
 
-import org.nhnacademy.Terran;
+import org.nhnacademy.species.Terran;
 import org.nhnacademy.attackType.Missile;
 
 public class Goliath extends Terran implements Missile {
-    private static final int ATTACK_POWER = 5;
-    private static final int DEFENSE_POWER = 15;
     private static final String UNIT_NAME = "Goliath";
 
     public Goliath() {
-        super(ATTACK_POWER, DEFENSE_POWER);
+        super(5, 15);
     }
 
     @Override

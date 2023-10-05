@@ -2,8 +2,12 @@ package org.nhnacademy;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.nhnacademy.service.MakeUnits;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class User {
+    private static final Logger logger = LoggerFactory.getLogger(User.class);
     private String species;
     private ArrayList<Unit> units;
 
@@ -22,89 +26,28 @@ public class User {
         units = new ArrayList<>(MakeUnits.makeUnits(species));
     }
 
-    public List<Unit> getUnits() {
-        return units;
+    public Unit getUnitInList(int index) {
+        return units.get(index);
     }
 
-    // 싸움
-//    public void attack(List<Unit> defenseList, Unit defenseUnit, Unit attackUnit) {
-//        if (defenseUnit instanceof HighAttack && !(attackUnit instanceof HighAttack)) {
-//            return;
-//        }
-//        defenseUnit.attackDefensePower(attackUnit.getAttackPower());
-//        if (defenseUnit.getDefensePower() <= 0) {
-//            defenseList.remove(defenseUnit);
-//        }
-//    }
+    public void printUnit() {
+        for (int i = 0; i < units.size(); i++) {
+            logger.info("{}. {} (현재 방어력: {})",
+                    i, units.get(i).getUnitName(), units.get(i).getDefensePower());
+        }
+    }
+
+    public void removeUnit(Unit unit) {
+        units.remove(unit);
+    }
 
     // null인지 전체 체크
     public boolean defenseCheck() {
         return units.isEmpty();
     }
 
-    /**
-     * Terran을 선택하면 5개의 유닛이 무작위로 생성됩니다.
-     * Protos를 선택하면 4개의 유닛이 무작위로 생성됩니다.
-     * Zerg를 선택하면 8개의 유닛이 무작위로 생성됩니다.
-     */
-//    private void makeUnits() {
-//        units = new ArrayList<>();
-//        switch (species.toLowerCase()) {
-//            case "terran":
-//                File file = new File("src/main/java/org/nhnacademy/terran");
-//                String[] terrans = file.list();
-//                random = new Random();
-//                try {
-//                    for (int i = 0; i < 5; i++) {
-//                        String unit = terrans[random.nextInt(terrans.length)];
-//                        // string을 클래스 객체로
-//                        Object o = Class.forName("org.nhnacademy.terran." + unit.replace(".java", ""))
-//                                .getDeclaredConstructor().newInstance();
-//                        // arrayList에 추가
-//                        units.add((Unit) o);
-//                    }
-//                } catch (Exception e) {
-//                    throw new RuntimeException("파일을 읽어오지 못했습니다.");
-//                }
-//                break;
-//            case "protos":
-//                file = new File("src/main/java/org/nhnacademy/protos");
-//                String[] protosList = file.list();
-//                random = new Random();
-//                try {
-//                    for (int i = 0; i < 4; i++) {
-//                        String unit = protosList[random.nextInt(protosList.length)];
-//                        // string을 클래스 객체로
-//                        Object o =
-//                                Class.forName("org.nhnacademy.protos." + unit.replace(".java", ""))
-//                                        .getDeclaredConstructor().newInstance();
-//                        // arrayList에 추가
-//                        units.add((Unit) o);
-//                    }
-//                } catch (Exception e) {
-//                    throw new RuntimeException("파일을 읽어오지 못했습니다.");
-//                }
-//                break;
-//            case "zerg":
-//                file = new File("src/main/java/org/nhnacademy/zerg");
-//                String[] zergList = file.list();
-//                random = new Random();
-//                try {
-//                    for (int i = 0; i < 8; i++) {
-//                        String unit = zergList[random.nextInt(zergList.length)];
-//                        // string을 클래스 객체로
-//                        Object o =
-//                                Class.forName("org.nhnacademy.zerg." + unit.substring(0, unit.length() - 5))
-//                                        .getDeclaredConstructor().newInstance();
-//                        // arrayList에 추가
-//                        units.add((Unit) o);
-//                    }
-//                } catch (Exception e) {
-//                    throw new RuntimeException("파일을 읽어오지 못했습니다.");
-//                }
-//                break;
-//            default:
-//                throw new IllegalArgumentException("잘못된 입력입니다.");
-//        }
-//    }
+    public int getSize() {
+        return units.size();
+    }
+
 }

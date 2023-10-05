@@ -1,4 +1,4 @@
 package org.nhnacademy.attackType;
 
-public interface HighAttack {
+public interface Weapons {
 }

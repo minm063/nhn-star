@@ -1,4 +1,4 @@
 package org.nhnacademy.attackType;
 
-public interface Missile extends HighAttack{
+public interface Missile extends Weapons {
 }

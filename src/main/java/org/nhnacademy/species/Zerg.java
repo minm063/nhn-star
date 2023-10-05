@@ -1,15 +1,17 @@
-package org.nhnacademy;
+package org.nhnacademy.species;
 
-public abstract class Protos implements Unit{
+import org.nhnacademy.Unit;
+
+public abstract class Zerg implements Unit {
     private int attackPower;
     private int defensePower;
     private String speciesName;
 
 
-    protected Protos(int attackPower, int defensePower) {
+    protected Zerg(int attackPower, int defensePower) {
         this.attackPower = attackPower;
         this.defensePower = defensePower;
-        speciesName = "Protos";
+        speciesName = "Zerg";
     }
 
     @Override

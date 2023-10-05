@@ -1,4 +1,4 @@
 package org.nhnacademy.attackType;
 
-public interface Laser extends HighAttack{
+public interface Laser extends Weapons {
 }
