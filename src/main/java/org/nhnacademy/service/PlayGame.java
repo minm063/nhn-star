@@ -3,6 +3,7 @@ package org.nhnacademy.service;
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
+import org.nhnacademy.Unit;
 import org.nhnacademy.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,20 +21,21 @@ public class PlayGame {
         User user = new User(pickSpecies());
         User computer = new User(random.nextInt(3));
 
+        uncontestedGame(user, computer);
         while (true) {
-            print(user, computer);
+                print(user, computer);
 
-            int userUnitIndex;
-            int computerUnitIndex;
-            logger.info("공격을 수행할 아군 유닛과 공격할 적군 유닛을 선택하세요.");
-            do {
-                userUnitIndex = (inputAttack(user.getSize()));
-            } while (userUnitIndex == -1);
-            do {
-                computerUnitIndex = (inputDefense(computer.getSize()));
-            } while (computerUnitIndex == -1);
-
+                int userUnitIndex;
+                int computerUnitIndex;
+                logger.info("공격을 수행할 아군 유닛과 공격할 적군 유닛을 선택하세요.");
             try {
+                do {
+                    userUnitIndex = (inputAttack(user.getSize()));
+                } while (userUnitIndex == -1);
+                do {
+                    computerUnitIndex = (inputDefense(computer.getSize()));
+                } while (computerUnitIndex == -1);
+
                 if (userTurn(userUnitIndex, computerUnitIndex, user, computer)) {
                     break;
                 }
@@ -47,11 +49,23 @@ public class PlayGame {
         }
     }
 
-    private static boolean userTurn(int userUnitIndex, int computerUnitIndex, User user, User computer) {
-        // user가 공격
-        logger.info("유저의 공격 : {} -> {}", user.getUnitInList(userUnitIndex).getUnitName(), computer.getUnitInList(computerUnitIndex).getUnitName());
+    private static void uncontestedGame(User user, User computer) {
+        if (user.hasNonWeapon() && computer.hasFlyableWeapon()) {
+            throw new IllegalArgumentException("판정패입니다. 게임을 종료합니다.");
+        } else if (user.hasFlyableWeapon() && computer.hasNonWeapon()) {
+            throw new IllegalArgumentException("판정승입니다. 게임을 종료합니다.");
+        }
+    }
 
-        Attack.attack(user.getUnitInList(userUnitIndex), computer.getUnitInList(computerUnitIndex), computer);
+    private static boolean userTurn(int attackIndex, int defenseIndex, User user, User computer) {
+        Unit computerUnit = computer.getUnitInList(defenseIndex);
+        Unit userUnit = user.getUnitInList(attackIndex);
+        // user가 공격
+        logger.info("유저의 공격 : {} -> {}", user.getUnitInList(attackIndex).getUnitName(),
+                computer.getUnitInList(defenseIndex).getUnitName());
+
+        computerUnit.attack(userUnit.getAttackPower(), userUnit);
+        computer.removeUnit();
 
         if (computer.defenseCheck()) {
             print(user, computer);
@@ -65,11 +79,15 @@ public class PlayGame {
         // 컴퓨터가 공격
         int defenseIndex = random.nextInt(user.getSize());
         int attackIndex = random.nextInt(computer.getSize());
+        Unit computerUnit = computer.getUnitInList(attackIndex);
+        Unit userUnit = user.getUnitInList(defenseIndex);
 
         logger.info("컴퓨터의 공격 : {} -> {}",
-                computer.getUnitInList(attackIndex).getUnitName(), user.getUnitInList(defenseIndex).getUnitName());
+                computerUnit.getUnitName(), userUnit.getUnitName());
 
-        Attack.attack(computer.getUnitInList(attackIndex), user.getUnitInList(defenseIndex), user);
+        userUnit.attack(computerUnit.getAttackPower(), computerUnit);
+        user.removeUnit();
+
         if (user.defenseCheck()) {
             print(user, computer);
             logger.info("패배했습니다! 게임을 종료합니다.");
