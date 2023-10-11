@@ -1,0 +1,116 @@
+{"Protos":
+  [
+    {
+      "name": "Carrier",
+      "attack": "25",
+      "defense": "45",
+      "type": "Flyable"
+    },
+    {
+      "name": "Zealot",
+      "attack": "5",
+      "defense": "20",
+      "type": ""
+    },
+    {
+      "name": "Dragoon",
+      "attack": "3",
+      "defense": "15",
+      "type": "Laser"
+    },
+    {
+      "name": "HighTempler",
+      "attack": "10",
+      "defense": "2",
+      "type": ""
+    },
+    {
+      "name": "Scout",
+      "attack": "5",
+      "defense": "10",
+      "type": "Flyable"
+    },
+    {
+      "name": "Cosair",
+      "attack": "4",
+      "defense": "12",
+      "type": "Flyable"
+    }
+  ],
+  "Terran": [
+    {
+      "name": "Marine",
+      "attack": "3",
+      "defense": "10",
+      "type": ""
+    },
+    {
+      "name": "Tank",
+      "attack": "7",
+      "defense": "15",
+      "type": ""
+    },
+    {
+      "name": "Goliath",
+      "attack": "5",
+      "defense": "15",
+      "type": "Missile"
+    },
+    {
+      "name": "Wraith",
+      "attack": "3",
+      "defense": "10",
+      "type": "Flyable"
+    },
+    {
+      "name": "Valkyrie",
+      "attack": "4",
+      "defense": "12",
+      "type": "Flyable"
+    },
+    {
+      "name": "BattleCruzer",
+      "attack": "20",
+      "defense": "30",
+      "type": "Flyable"
+    }
+  ],
+  "Zerg": [
+    {
+      "name": "Zergling",
+      "attack": "2",
+      "defense": "3",
+      "type": ""
+    },
+    {
+      "name": "Hydralisk",
+      "attack": "3",
+      "defense": "7",
+      "type": "Sting"
+    },
+    {
+      "name": "Ultralisk",
+      "attack": "5",
+      "defense": "15",
+      "type": ""
+    },
+    {
+      "name": "Mutalisk",
+      "attack": "2",
+      "defense": "8",
+      "type": "Flyable"
+    },
+    {
+      "name": "Guardian",
+      "attack": "3",
+      "defense": "6",
+      "type": "Flyable"
+    },
+    {
+      "name": "Queen",
+      "attack": "15",
+      "defense": "25",
+      "type": "Flyable"
+    }
+  ]
+}
